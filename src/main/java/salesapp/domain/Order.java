@@ -32,9 +32,8 @@ public class Order extends Entity<UUID> {
     public Order() {
     }
 
-    public Order(String clientName, OrderStatus status, User agent) {
+    public Order(OrderStatus status, User agent) {
         this.agent = agent;
-        this.clientName = clientName;
         this.status = status;
         setId(UUID.randomUUID());
     }
@@ -45,7 +44,7 @@ public class Order extends Entity<UUID> {
     }
 
     public void removeOrderItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
+        orderItems.remove(orderItem);
         orderItem.setOrder(null);
     }
 

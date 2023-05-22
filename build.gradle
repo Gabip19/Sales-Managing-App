@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 group = 'salesapp'
@@ -9,6 +11,14 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass = 'salesapp.Main'
+}
+
+javafx {
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -16,6 +26,9 @@ dependencies {
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.4'
     // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
     implementation 'org.hibernate:hibernate-core:6.2.2.Final'
+    // https://mvnrepository.com/artifact/org.springframework/spring-context
+    implementation group: 'org.springframework', name: 'spring-context', version: '6.0.9'
+
 }
 
 test {

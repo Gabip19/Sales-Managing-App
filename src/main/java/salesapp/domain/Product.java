@@ -62,4 +62,6 @@ public class Product extends Entity<UUID> {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+
 }

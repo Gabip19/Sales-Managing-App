@@ -1,4 +1,4 @@
-package salesapp.repository;
+package salesapp.repository.database;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
