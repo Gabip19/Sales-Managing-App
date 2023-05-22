@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'salesapp'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.4'
+    // https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+    implementation 'org.hibernate:hibernate-core:6.2.2.Final'
+}
+
+test {
+    useJUnitPlatform()
+}
