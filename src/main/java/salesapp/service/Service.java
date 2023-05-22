@@ -3,6 +3,7 @@ package salesapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import salesapp.domain.Order;
+import salesapp.domain.OrderStatus;
 import salesapp.domain.Product;
 import salesapp.domain.User;
 import salesapp.repository.OrderRepository;
@@ -45,5 +46,19 @@ public class Service {
 
     public void placeOrder(Order order) {
         orderRepo.add(order);
+    }
+
+    public ArrayList<Order> getAllOrdersForUser(User agent) {
+        return new ArrayList<>(orderRepo.findByAgent(agent));
+    }
+
+    public Order finishOrder(Order order) {
+        order.setStatus(OrderStatus.FINISHED);
+        orderRepo.update(order, order.getId());
+        return order;
+    }
+
+    public void cancelOrder(Order order) {
+        orderRepo.delete(order.getId());
     }
 }

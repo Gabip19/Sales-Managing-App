@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import salesapp.controller.LoginController;
+import salesapp.repository.database.HibernateUtils;
 import salesapp.service.Service;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
+        HibernateUtils.closeSession();
     }
 
     @Override

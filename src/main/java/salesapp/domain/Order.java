@@ -23,6 +23,7 @@ public class Order extends Entity<UUID> {
     private OrderStatus status;
 
     @OneToMany(
+            fetch = FetchType.EAGER,
             mappedBy = "order",
             cascade = CascadeType.ALL,
             orphanRemoval = true

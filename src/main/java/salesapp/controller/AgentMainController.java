@@ -3,9 +3,15 @@ package salesapp.controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import salesapp.domain.*;
+
+import java.io.IOException;
 
 public class AgentMainController extends MainWindowController {
 
@@ -21,6 +27,7 @@ public class AgentMainController extends MainWindowController {
     public TextField clientNameField;
     public Button removeOrderItemBtn;
     public Button placeOrderBtn;
+    public Button viewOrdersBtn;
 
     private Order currentOrder;
 
@@ -29,9 +36,10 @@ public class AgentMainController extends MainWindowController {
         initOrderItemTableView();
         products.setAll(srv.getAllProducts());
         productsTableView.getSelectionModel().selectedItemProperty().addListener((a, b, c) -> selectionChanged());
-        addToCartBtn.setOnAction((e) -> addProductToCart());
-        removeOrderItemBtn.setOnAction((e) -> removeOrderItem());
-        placeOrderBtn.setOnAction((e) -> placeOrder());
+        addToCartBtn.setOnAction(e -> addProductToCart());
+        removeOrderItemBtn.setOnAction(e -> removeOrderItem());
+        placeOrderBtn.setOnAction(e -> placeOrder());
+        viewOrdersBtn.setOnAction(e -> openOrdersWindow());
         currentOrder = new Order(OrderStatus.PENDING, currentUser);
     }
 
@@ -44,6 +52,10 @@ public class AgentMainController extends MainWindowController {
     }
 
     private void placeOrder() {
+        if (currentOrder.getOrderItems().size() == 0) {
+            return;
+        }
+
         String clientName = clientNameField.getText();
         if (clientName.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Client name is empty.").show();
@@ -99,5 +111,21 @@ public class AgentMainController extends MainWindowController {
         orderItemsTableView.getColumns().add(0, productName);
         orderItemsTableView.getColumns().add(1, quantity);
         orderItemsTableView.setItems(currentOrderItems);
+    }
+
+    private void openOrdersWindow() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/orders-window.fxml"));
+        Scene scene;
+        try {
+            scene = new Scene(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Orders");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
     }
 }
