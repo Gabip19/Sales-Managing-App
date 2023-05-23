@@ -3,6 +3,7 @@ package salesapp.repository.database;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
+import salesapp.domain.Order;
 import salesapp.domain.Product;
 import salesapp.repository.ProductRepository;
 
@@ -25,8 +26,24 @@ public class ProductDBRepository implements ProductRepository {
     }
 
     @Override
-    public void update(Product elem, UUID uuid) {
-        throw new RuntimeException("Not implemented.\n");
+    public void update(Product elem, UUID id) {
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                Product product = session.get(Product.class, id);
+                product.setStock(elem.getStock());
+                product.setPrice(elem.getPrice());
+                product.setDescription(elem.getDescription());
+                session.merge(product);
+                transaction.commit();
+            } catch (RuntimeException e) {
+                System.err.println("[ORDER REPO] Update order failed: " + e.getMessage());
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
     }
 
     @Override

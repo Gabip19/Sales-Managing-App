@@ -46,6 +46,11 @@ public class Service {
 
     public void placeOrder(Order order) {
         orderRepo.add(order);
+        order.getOrderItems().forEach(orderItem -> {
+            Product product = orderItem.getProduct();
+            product.setStock(product.getStock() - orderItem.getQuantity());
+            productRepo.update(product, product.getId());
+        });
     }
 
     public ArrayList<Order> getAllOrdersForUser(User agent) {

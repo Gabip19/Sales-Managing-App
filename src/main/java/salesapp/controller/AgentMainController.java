@@ -128,4 +128,8 @@ public class AgentMainController extends MainWindowController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
+
+    private void reloadProductList() {
+        products.setAll(srv.getAllProducts());
+    }
 }

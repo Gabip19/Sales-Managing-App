@@ -1,11 +1,9 @@
 package salesapp.repository.database;
 
-import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
 import salesapp.domain.Order;
-import salesapp.domain.Product;
 import salesapp.domain.User;
 import salesapp.repository.OrderRepository;
 
