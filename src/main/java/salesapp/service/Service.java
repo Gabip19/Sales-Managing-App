@@ -66,4 +66,8 @@ public class Service {
     public void cancelOrder(Order order) {
         orderRepo.delete(order.getId());
     }
+
+    public ArrayList<Order> getAllOrders() {
+        return new ArrayList<>((Collection<Order>) orderRepo.findAll());
+    }
 }

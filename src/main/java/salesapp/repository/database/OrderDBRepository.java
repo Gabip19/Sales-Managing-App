@@ -101,6 +101,23 @@ public class OrderDBRepository implements OrderRepository {
 
     @Override
     public Iterable<Order> findAll() {
-        throw new RuntimeException("Not implemented.\n");
+        List<Order> orders;
+
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                orders = session.createQuery("from Order o", Order.class).list();
+                transaction.commit();
+                return orders;
+            } catch (RuntimeException e) {
+                System.err.println("[ORDER REPO] Find all orders failed: " + e.getMessage());
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
+
+        return new ArrayList<>();
     }
 }

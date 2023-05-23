@@ -11,7 +11,7 @@ import java.util.UUID;
 @AttributeOverride(name = "id", column = @Column(name = "id"))
 
 public class Order extends Entity<UUID> {
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "agent_id")
     private User agent;
 

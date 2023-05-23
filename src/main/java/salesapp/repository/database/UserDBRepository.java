@@ -14,7 +14,19 @@ public class UserDBRepository implements UserRepository {
 
     @Override
     public void add(User elem) {
-        throw new RuntimeException("Not implemented.\n");
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                session.persist(elem);
+                transaction.commit();
+            } catch (RuntimeException e) {
+                System.err.println("[USER REPO] Add user failed: " + e.getMessage());
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
     }
 
     @Override

@@ -28,6 +28,7 @@ public class AgentMainController extends MainWindowController {
     public Button removeOrderItemBtn;
     public Button placeOrderBtn;
     public Button viewOrdersBtn;
+    public Button refreshProductsBtn;
 
     private Order currentOrder;
 
@@ -40,6 +41,7 @@ public class AgentMainController extends MainWindowController {
         removeOrderItemBtn.setOnAction(e -> removeOrderItem());
         placeOrderBtn.setOnAction(e -> placeOrder());
         viewOrdersBtn.setOnAction(e -> openOrdersWindow());
+        refreshProductsBtn.setOnAction(e -> reloadProductsList());
         currentOrder = new Order(OrderStatus.PENDING, currentUser);
     }
 
@@ -68,6 +70,8 @@ public class AgentMainController extends MainWindowController {
         srv.placeOrder(currentOrder);
         currentOrder = new Order(OrderStatus.PENDING, currentUser);
         currentOrderItems.clear();
+
+        reloadProductsList();
     }
 
     private void removeOrderItem() {
@@ -79,6 +83,7 @@ public class AgentMainController extends MainWindowController {
 
     private void selectionChanged() {
         Product selectedItem = productsTableView.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) return;
         nameField.setText(selectedItem.getName());
         descriptionField.setText(selectedItem.getDescription());
         priceField.setText(String.valueOf(selectedItem.getPrice()));
@@ -129,7 +134,7 @@ public class AgentMainController extends MainWindowController {
         stage.show();
     }
 
-    private void reloadProductList() {
+    private void reloadProductsList() {
         products.setAll(srv.getAllProducts());
     }
 }

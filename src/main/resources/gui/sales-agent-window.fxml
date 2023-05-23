@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salesapp.controller.AgentMainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="salesapp.controller.AgentMainController">
    <HBox alignment="CENTER" layoutX="22.0" layoutY="16.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <VBox alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
@@ -22,12 +22,16 @@
             <font>
                <Font size="18.0" />
             </font>
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
          </Label>
          <TableView fx:id="productsTableView" prefHeight="402.0" prefWidth="301.0" VBox.vgrow="ALWAYS">
             <columnResizePolicy>
                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
          </TableView>
+         <Button fx:id="refreshProductsBtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="46.0" text="Refresh" />
       </VBox>
       <VBox alignment="CENTER" spacing="8.0" HBox.hgrow="ALWAYS">
          <padding>
