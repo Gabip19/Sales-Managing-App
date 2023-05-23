@@ -83,7 +83,7 @@ public class AgentMainController extends MainWindowController {
 
     private void selectionChanged() {
         Product selectedItem = productsTableView.getSelectionModel().getSelectedItem();
-        if (selectedItem == null) return;
+        if (selectedItem == null || selectedItem.getStock() == 0) return;
         nameField.setText(selectedItem.getName());
         descriptionField.setText(selectedItem.getDescription());
         priceField.setText(String.valueOf(selectedItem.getPrice()));

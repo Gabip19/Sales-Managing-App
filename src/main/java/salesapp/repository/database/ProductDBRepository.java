@@ -17,7 +17,19 @@ public class ProductDBRepository implements ProductRepository {
 
     @Override
     public void add(Product elem) {
-        throw new RuntimeException("Not implemented.\n");
+        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                session.persist(elem);
+                transaction.commit();
+            } catch (RuntimeException e) {
+                System.err.println("[PRODUCT REPO] Add order failed: " + e.getMessage());
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+            }
+        }
     }
 
     @Override
