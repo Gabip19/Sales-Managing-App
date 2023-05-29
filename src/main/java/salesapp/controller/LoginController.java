@@ -24,7 +24,8 @@ public class LoginController {
     }
 
     public void initialize() {
-        loginBtn.setOnAction((e) -> login());
+        loginBtn.setOnAction(e -> login());
+        switchToRegisterBtn.setOnAction(e -> switchToRegister());
     }
 
     private void login() {
@@ -70,5 +71,24 @@ public class LoginController {
         stage.setTitle("Main window");
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void switchToRegister() {
+        Scene scene;
+
+        try {
+            FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/gui/signup-window.fxml"));
+            scene = new Scene(loginLoader.load());
+            RegisterController controller = loginLoader.getController();
+            controller.setSrv(srv);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Register");
+        stage.setScene(scene);
+        stage.show();
+        ((Stage) switchToRegisterBtn.getScene().getWindow()).close();
     }
 }

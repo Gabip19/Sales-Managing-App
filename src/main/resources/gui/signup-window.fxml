@@ -8,52 +8,51 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="salesapp.controller.RegisterController">
    <Label layoutX="249.0" layoutY="37.0" text="Sign in">
       <font>
-         <Font size="36.0"/>
+         <Font size="36.0" />
       </font>
    </Label>
    <Label layoutX="157.0" layoutY="184.0" text="Username:">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
    <Label layoutX="163.0" layoutY="220.0" text="Password:">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="261.0" layoutY="186.0" prefHeight="26.0" prefWidth="188.0"/>
-   <PasswordField layoutX="261.0" layoutY="222.0" prefHeight="26.0" prefWidth="188.0"/>
+   <TextField layoutX="261.0" layoutY="186.0" prefHeight="26.0" prefWidth="188.0" />
+   <PasswordField layoutX="261.0" layoutY="222.0" prefHeight="26.0" prefWidth="188.0" />
    <Label layoutX="153.0" layoutY="111.0" text="First name:">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="261.0" layoutY="113.0" prefHeight="26.0" prefWidth="188.0"/>
+   <TextField layoutX="261.0" layoutY="113.0" prefHeight="26.0" prefWidth="188.0" />
    <Label layoutX="95.0" layoutY="260.0" text="Repeat password:">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
-   <PasswordField layoutX="261.0" layoutY="262.0" prefHeight="26.0" prefWidth="188.0"/>
+   <PasswordField layoutX="261.0" layoutY="262.0" prefHeight="26.0" prefWidth="188.0" />
    <Label layoutX="156.0" layoutY="147.0" text="Last name:">
       <font>
-         <Font size="20.0"/>
+         <Font size="20.0" />
       </font>
    </Label>
-   <TextField layoutX="261.0" layoutY="149.0" prefHeight="26.0" prefWidth="188.0"/>
-   <Hyperlink layoutX="279.0" layoutY="359.0" text="Log in">
+   <TextField layoutX="261.0" layoutY="149.0" prefHeight="26.0" prefWidth="188.0" />
+   <Hyperlink fx:id="switchToLoginBtn" layoutX="279.0" layoutY="359.0" text="Log in">
       <font>
-         <Font size="14.0"/>
+         <Font size="14.0" />
       </font>
    </Hyperlink>
    <Button layoutX="259.0" layoutY="303.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="88.0" text="Sign in">
       <font>
-         <Font size="18.0"/>
+         <Font size="18.0" />
       </font>
    </Button>
 </AnchorPane>
